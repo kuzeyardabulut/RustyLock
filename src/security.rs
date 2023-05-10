@@ -1,6 +1,5 @@
 use sysinfo::{ProcessExt, System, SystemExt, PidExt};
-use winapi::um::debugapi::IsDebuggerPresent;
-use winapi::um::psapi::EnumProcesses;
+use windows_sys::Win32::System::{Diagnostics::Debug::IsDebuggerPresent, ProcessStatus::EnumProcesses};
 
 // Checks Debugger
 pub fn anti_debugger() -> Result<(), ()>{
@@ -101,5 +100,3 @@ fn print_process_name_and_id(proc_pid: u32) -> Result<String, String> {
         None => return Err(format!("{} programı bulunamadı.", proc_pid).to_string()),
     }
 }
-
-
