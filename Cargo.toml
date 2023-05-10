@@ -1,0 +1,37 @@
+[package]
+name = "rustylock"
+version = "0.1.0"
+edition = "2021"
+authors = ["Kuzey Arda Bulut <kuzeyardabulut.com>"]
+
+
+[lib]
+name = "ransware"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+
+[[bin]]
+name = "inject"
+path = "src/main.rs"
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+sysinfo = "0.29.0"
+color-eyre = "0.6.2"
+ctor = "0.2.0"
+dll-syringe = "0.15.0"
+tracing = "0.1.37"
+tracing-subscriber = "0.3.16"
+chacha20poly1305 = { version = "0.10.1", features = ["stream"] }
+anyhow = "1.0.44"
+base64 = "0.21.0"
+whoami = "1.4.0"
+sha256 = "1.1.2"
+winit = "0.28.3"
+winapi = { version = "0.3", features = ["debugapi"]}
+obfstr = "0.3"
+windows-sys = "0.48.0"
+
+
