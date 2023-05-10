@@ -1,9 +1,6 @@
 mod execution;
 use sysinfo::{ProcessExt, System, SystemExt, PidExt};
-use winapi::um::debugapi::IsDebuggerPresent;
-use winapi::um::psapi::EnumProcesses;
-use winapi::um::winuser::{GetAsyncKeyState, VK_RBUTTON, GetCursorPos};
-use winapi::shared::windef::POINT;
+use windows_sys::Win32::{System::{Diagnostics::Debug::IsDebuggerPresent, ProcessStatus::EnumProcesses}, UI::{Input::KeyboardAndMouse::{GetAsyncKeyState, VK_RBUTTON}, WindowsAndMessaging::GetCursorPos}, Foundation::POINT};
 
 // Checks your mouses location. If it is stable over hundred seconds than application will be crash.
 fn check_cursor_position() -> std::result::Result<(), ()> {
@@ -44,7 +41,7 @@ fn check_mouse_click(min_clicks: u32) -> std::result::Result<(), ()> {
     let mut count: u32 = 0;
 
     while count < min_clicks {
-        let key_left_clicked = unsafe { GetAsyncKeyState(VK_RBUTTON) }; //Gets Number Of Mouse Clicks
+        let key_left_clicked = unsafe { GetAsyncKeyState(VK_RBUTTON.into()) }; //Gets Number Of Mouse Clicks
         if key_left_clicked >> 15 == -1 {
             count += 1;
         }
