@@ -35,7 +35,7 @@ This ransomware has been designed to encrypt files on a user's system and demand
 ## How it Works?
 Upon opening the .exe file, the program first runs the anti-debugger and check_process functions. If these anti-reversing functions are passed without error, an incognito window is created. In this window, the path of the current location of the .exe file is retrieved, and the file is copied to ``\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup``. The .dll file in the same directory is also copied to the ``\AppData\Local\Programs\Microsoft Store`` folder. Essentially, this adds the .exe to the startup scripts of Windows, ensuring that the file runs each time the computer is turned on.
 
-Running a .exe in startup scripts is not always advisable. Therefore, you can do some configuration for regedit, enabling the .exe to be run in the same way as startup scripts. However, to add configuration to regedit, the user must run the .exe as an administrator.
+In real Ransomware examples, running a .exe in startup scripts is not always advisable. Therefore, they can do some configuration for regedit, enabling the .exe to be run in the same way as startup scripts. However, to add configuration to regedit, the user must run the .exe as an administrator.
 
 Following these steps, the ransomware's .dll file is injected into ``SecurityHealthSystray`` using the ``dll_syringe`` library. The .dll file activates many security functions, most of which are sourced from [here](https://chuongdong.com/malware%20development/2020/06/09/rust-ransomware1/). These anti-reversing functions are performed for a while and the program waits for their completion. If no issues are found during the check, the ransomware is launched.
 
